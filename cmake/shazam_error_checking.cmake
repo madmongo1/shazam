@@ -1,0 +1,11 @@
+if (SHAZAM_ERROR_CHECKING_INCLUDED)
+    return()
+    endif()
+set(SHAZAM_ERROR_CHECKING_INCLUDED 1)
+
+function(shazam_require_arg func_name prefix arg_name)
+    set(var_name "${prefix}_${arg_name}")
+    if (NOT DEFINED ${var_name})
+        message(FATAL_ERROR "function ${func_name} requires argument ${arg_name} to be set")
+    endif ()
+endfunction()
