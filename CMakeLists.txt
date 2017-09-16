@@ -10,7 +10,7 @@ HunterGate(
 
 option(SHAZAM_BUILD_TESTS "build the tests" ON)
 set(SHAZAM_CXX_FEATURES_REQUIRED cxx_std_17)
-option(SHAZAM_CXX_ALLOW_EXTENSIONS "Whether to allow compiler extensions" OFF)
+option(SHAZAM_CXX_ALLOW_EXTENSIONS "Whether to allow compiler extensions" ON)
 
 project(Shazam VERSION 0.1 LANGUAGES CXX)
 

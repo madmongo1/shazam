@@ -14,19 +14,27 @@ namespace shazam {
      * a string service manipulates string implementations on behalf of a logic string object
      */
     struct string_service {
+        using implementation_type = std::string;
+        using char_type = std::string::traits_type::char_type;
+
+        implementation_type construct(char_type const* source) {
+            if (source)
+                return std::string(source);
+            else
+                return std::string();
+        }
+
         segment find_first(std::string const &haystack, std::string const &needle) {
             auto i = std::search(begin(haystack), end(haystack),
                                  begin(needle), end(needle));
             if (i == end(haystack))
                 return empty_segment;
-            else
-            {
+            else {
                 return segment(position(std::distance(begin(haystack), i)), offset(needle.size()));
             }
         }
 
-        auto make_iterators(std::string const& input, segment seg)
-        {
+        auto make_iterators(std::string const &input, segment seg) {
             seg.truncate(input.size());
             auto first = std::next(std::begin(input), seg.begin().value());
             auto last = std::next(first, seg.size().value());
